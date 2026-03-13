@@ -1,0 +1,54 @@
+{
+  "name": "optimizely-audience-visualizer",
+  "version": "1.0.0",
+  "description": "Interactive treemap visualization for Optimizely audiences and experiments",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
+    "html2canvas": "^1.4.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-export-table-to-excel": "^1.0.6",
+    "recharts": "^3.7.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^7.13.1",
+    "@typescript-eslint/parser": "^7.13.1",
+    "@vitejs/plugin-react-swc": "^3.7.0",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "eslint-plugin-react-refresh": "^0.4.7",
+    "gh-pages": "^6.1.1",
+    "typescript": "^5.5.3",
+    "vite": "^5.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onterumahendra/optimizely-audience-visualizer.git"
+  },
+  "homepage": "https://onterumahendra.github.io/optimizely-audience-visualizer",
+  "keywords": [
+    "optimizely",
+    "visualization",
+    "treemap",
+    "audience",
+    "experiments",
+    "react",
+    "vite"
+  ],
+  "author": "Mahendra Onteru",
+  "license": "MIT"
+}
