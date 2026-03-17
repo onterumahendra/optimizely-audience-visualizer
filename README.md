@@ -2,7 +2,13 @@
 
 An interactive treemap visualization tool for Optimizely audiences and experiments. Visualize which experiments are targeting which audiences at a glance.
 
-https://onterumahendra.github.io/optimizely-audience-visualizer/
+
+Demo: https://onterumahendra.github.io/optimizely-audience-visualizer/
+
+![1773418733893](https://github.com/user-attachments/assets/6195339e-a62b-4f1f-806a-9447d19bec0d)
+![1773418734945](https://github.com/user-attachments/assets/f52ff9c1-4cbf-4127-9a63-f4b82a7846f2)
+![1773418735993](https://github.com/user-attachments/assets/19c42152-0e8d-4c65-9446-b63c11a7903a)
+
 
 ## 🎯 Features
 
