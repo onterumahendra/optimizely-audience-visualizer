@@ -1,9 +1,5 @@
-// Token Input Component
-// Follows Single Responsibility Principle - handles token input UI
-
 import React, { memo } from 'react';
-import { Grid, TextField, Button, Typography, Tooltip } from '@mui/material';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import { Button, FormHelperText, Grid, TextField, Typography } from '@mui/material';
 
 interface TokenInputProps {
   token: string;
@@ -25,7 +21,8 @@ const TokenInput: React.FC<TokenInputProps> = memo(({
   return (
     <>
       <Grid container spacing={2}>
-        <Grid size={{ xs: 12, md: 10 }} sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+        <Grid size={{ xs: 12, md: 10 }}>
+
           <TextField
             label="Optimizely API Bearer Token"
             value={token}
@@ -34,11 +31,18 @@ const TokenInput: React.FC<TokenInputProps> = memo(({
             size="small"
             type="password"
           />
-          <Tooltip title="How to generate Token">
-            <Button onClick={onHelpClick}>
-              <HelpOutlineIcon />
-            </Button>
-          </Tooltip>
+          <FormHelperText
+            onClick={onHelpClick}
+            sx={{ 
+              cursor: 'pointer', 
+              textDecoration: 'underline', 
+              mt: 0.5,
+              color: 'primary.main'
+            }}
+          >
+            How do I generate a bearer token?
+          </FormHelperText>
+
         </Grid>
 
         <Grid size={{ xs: 12, md: 2 }}>
@@ -52,7 +56,7 @@ const TokenInput: React.FC<TokenInputProps> = memo(({
           </Button>
         </Grid>
       </Grid>
-      
+
       {error && (
         <Typography color="error" sx={{ mt: 2, textAlign: 'center' }}>
           {error}
