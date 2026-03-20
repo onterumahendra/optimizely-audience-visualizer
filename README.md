@@ -312,15 +312,16 @@ If you encounter any issues or have questions:
 - [x] Multi-select audience filtering
 - [x] Responsive Grid layouts (MUI v6)
 - [x] Custom theme support
+- [x] Dark mode theme
+- [x] Error boundaries for better error handling
+- [x] Localization / Globalization
 
 ### Planned 🚀
 - [ ] Support for Optimizely Feature Flags
 - [ ] Advanced filtering options (date ranges, experiment status)
 - [ ] Historical trend analysis
 - [ ] Multiple project comparison view
-- [ ] Dark mode theme
 - [ ] PDF export
-- [ ] Error boundaries for better error handling
 - [ ] Unit and E2E tests
 - [ ] Virtual scrolling for large datasets
 
