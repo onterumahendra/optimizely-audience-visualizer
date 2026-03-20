@@ -75,8 +75,8 @@ const AudienceTreemap: React.FC<AudienceTreemapProps> = memo(({ audiences }) => 
         const max = Math.max(...values, 1);
 
         return {
-            data: displayedAudiences.map((aud, index) => ({
-                name: `Audience ${index + 1}`,
+            data: displayedAudiences.map(aud => ({
+                name: aud.name,
                 value: aud.experiments.length,
                 audId: aud.audId,
                 experiments: aud.experiments,

@@ -150,9 +150,9 @@ const App: React.FC = memo(() => {
                     label={t('projectSelector.dialogTitle')}
                     onChange={(e) => handleProjectChange(Number(e.target.value))}
                   >
-                    {projects.map((proj, index) => (
+                    {projects.map((proj) => (
                       <MenuItem key={proj.id} value={proj.id}>
-                        {t('projectSelector.projectLabel', { index: String(index + 1) })}
+                        {proj.name}
                       </MenuItem>
                     ))}
                   </Select>
