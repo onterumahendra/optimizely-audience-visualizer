@@ -5,12 +5,13 @@ An interactive treemap visualization tool for Optimizely audiences and experimen
 
 Demo: https://onterumahendra.github.io/optimizely-audience-visualizer/
 
+<img width="722" height="331" alt="Screenshot_2026-03-19_at_3 07 27_PM" src="https://github.com/user-attachments/assets/39257b16-6174-4b80-b881-e3bb2b683f91" />
 
-<img width="722" height="331" alt="Screenshot_2026-03-19_at_3 07 27_PM" src="https://github.com/user-attachments/assets/3cd94cf6-440c-4e91-83b2-84da7308daf3" />
-<img width="721" height="333" alt="Screenshot_2026-03-19_at_3 07 06_PM" src="https://github.com/user-attachments/assets/2a54986a-2b76-4baa-a0ba-1fee2eef7ad4" />
 <img width="722" height="333" alt="Screenshot_2026-03-19_at_3 06 40_PM" src="https://github.com/user-attachments/assets/67c416c7-a5e2-4abb-bb99-95057ef3d633" />
-![1773418735993](https://github.com/user-attachments/assets/9e0cea31-1094-4b04-ab8a-0b51618c7afa)
-![1773418734945](https://github.com/user-attachments/assets/cd5ef730-354b-4026-b4f4-0e67a8c6338e)
+
+![1773418734945](https://github.com/user-attachments/assets/cbbc8e86-1e97-4760-aab8-cb756857f333)
+
+![1773418735993](https://github.com/user-attachments/assets/c6dde077-3b3a-42e7-b3a9-711c3a61d538)
 
 
 ## 🎯 Features
