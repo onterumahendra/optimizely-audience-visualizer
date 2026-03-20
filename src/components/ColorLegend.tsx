@@ -2,6 +2,7 @@
 // Follows Single Responsibility Principle - displays color scale legend
 
 import React, { memo } from 'react';
+import { Box } from '@mui/material';
 import { ColorBin } from '../types';
 
 interface ColorLegendProps {
@@ -14,38 +15,39 @@ const ColorLegend: React.FC<ColorLegendProps> = memo(({ colorBins, min, max }) =
   const rangeLabels = colorBins.map(b => Math.round(min + b.threshold * (max - min)));
 
   return (
-    <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, paddingRight: '50px' }}>
-      <div style={{ display: 'flex' }}>
+    <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', minWidth: 0, paddingInlineEnd: '50px' }}>
+      <Box sx={{ display: 'flex' }}>
         {rangeLabels.map((label, idx) => (
-          <span
+          <Box
             key={idx}
-            style={{
+            component="span"
+            sx={{
               flex: 1,
               fontSize: 12,
-              color: '#000',
-              textAlign: 'right',
+              color: 'text.primary',
+              textAlign: 'end',
               whiteSpace: 'nowrap',
               overflow: 'hidden',
               textOverflow: 'ellipsis'
             }}
           >
             {label}
-          </span>
+          </Box>
         ))}
-      </div>
-      <div style={{ display: 'flex' }}>
+      </Box>
+      <Box sx={{ display: 'flex' }}>
         {colorBins.map((bin) => (
-          <div
+          <Box
             key={bin.color}
-            style={{
+            sx={{
               flex: 1,
               background: bin.color,
               height: 10
             }}
           />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 });
 

@@ -1,4 +1,8 @@
+/* Global styles - currently not in use */
+/* Theme colors are managed by MUI ThemeProvider */
+/* Use Paper component for themed backgrounds */
+
 .styled-box {
-  background: #fff;
+  /* background removed to allow theme to control it */
   border-radius: 28px;
 }

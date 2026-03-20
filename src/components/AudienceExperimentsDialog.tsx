@@ -6,7 +6,7 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import BrowserUpdatedIcon from '@mui/icons-material/BrowserUpdated';
 import { daysFromToday } from '../utils/dataTransformers';
-import { TreemapCellData } from '../types';
+import { useI18n } from '../contexts/I18nContext';
 
 const DownloadTableExcel = lazy(() => 
   import('react-export-table-to-excel').then(mod => ({ default: mod.DownloadTableExcel }))
@@ -14,21 +14,22 @@ const DownloadTableExcel = lazy(() =>
 
 type AudienceExperimentsDialogProps = {
     open: boolean;
-    selected: TreemapCellData | null;
+    selected: any;
     onClose: () => void;
 };
 
 const AudienceExperimentsDialog: React.FC<AudienceExperimentsDialogProps> = memo(({ open, selected, onClose }) => {
+    const { t } = useI18n();
     const [tableRef, setTableRef] = useState<HTMLTableElement | null>(null);
     
     return (
         <Dialog open={open} maxWidth='xl' onClose={onClose} fullWidth>
             <DialogTitle>
-                Experiments for Audience: {selected?.name} ({selected?.audId})
+                {t('audienceExperiments.dialogTitle', { audienceName: selected?.name || '' })} ({selected?.audId})
                 <IconButton
-                    aria-label="close"
+                    aria-label={t('common.close')}
                     onClick={onClose}
-                    sx={{ position: "absolute", right: 8, top: 8 }}
+                    sx={{ position: "absolute", insetInlineEnd: 8, top: 8 }}
                     size="large">
                     <CloseIcon />
                 </IconButton>
@@ -39,11 +40,11 @@ const AudienceExperimentsDialog: React.FC<AudienceExperimentsDialogProps> = memo
                             sheet="Experiments"
                             currentTableRef={tableRef}
                         >
-                            <Tooltip title="Download as Excel">
+                            <Tooltip title={t('audienceExperiments.exportButton')}>
                                 <IconButton
-                                    aria-label="download-excel"
+                                    aria-label={t('common.download')}
                                     color="primary"
-                                    sx={{ position: "absolute", right: 58, top: 8 }}
+                                    sx={{ position: "absolute", insetInlineEnd: 58, top: 8 }}
                                     size="large"
                                 >
                                     <BrowserUpdatedIcon />
@@ -59,8 +60,8 @@ const AudienceExperimentsDialog: React.FC<AudienceExperimentsDialogProps> = memo
                         <Table ref={setTableRef}>
                             <TableHead>
                                 <TableRow >
-                                    <TableCell><strong>Experiment Name</strong></TableCell>
-                                    <TableCell><strong>Experiment Id</strong></TableCell>
+                                    <TableCell><strong>{t('audienceExperiments.experimentName')}</strong></TableCell>
+                                    <TableCell><strong>{t('audienceExperiments.experimentId')}</strong></TableCell>
                                     <TableCell><strong>Days Running</strong></TableCell>
                                     <TableCell><strong>Variations</strong></TableCell>
                                 </TableRow>
@@ -82,7 +83,7 @@ const AudienceExperimentsDialog: React.FC<AudienceExperimentsDialogProps> = memo
                         </Table>
                     </TableContainer>
                 ) : (
-                    <Typography>No running experiments for this audience.</Typography>
+                    <Typography>{t('audienceExperiments.noExperiments')}</Typography>
                 )}
             </DialogContent>
         </Dialog>

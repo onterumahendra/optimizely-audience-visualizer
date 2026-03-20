@@ -1,5 +1,10 @@
+// Token Input Component
+// Follows Single Responsibility Principle - handles token input UI
+
 import React, { memo } from 'react';
-import { Button, FormHelperText, Grid, TextField, Typography } from '@mui/material';
+import { Grid, TextField, Button, Typography, FormHelperText } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
+import { useI18n } from '../contexts/I18nContext';
 
 interface TokenInputProps {
   token: string;
@@ -18,31 +23,36 @@ const TokenInput: React.FC<TokenInputProps> = memo(({
   loading,
   error
 }) => {
+  const { t } = useI18n();
+  const theme = useTheme();
+
   return (
     <>
       <Grid container spacing={2}>
         <Grid size={{ xs: 12, md: 10 }}>
-
           <TextField
-            label="Optimizely API Bearer Token"
+            label={t('tokenInput.label')}
             value={token}
             onChange={(e) => onTokenChange(e.target.value)}
             fullWidth
             size="small"
             type="password"
+            aria-label={t('tokenInput.ariaLabel')}
+            placeholder={t('tokenInput.placeholder')}
           />
           <FormHelperText
             onClick={onHelpClick}
-            sx={{ 
-              cursor: 'pointer', 
-              textDecoration: 'underline', 
-              mt: 0.5,
-              color: 'primary.main'
+            sx={{
+              cursor: 'pointer',
+              textDecoration: 'underline',
+              mt: 1,
+              color: 'primary.main',
+              width: '100%',
+              textAlign: theme.direction === 'rtl' ? 'right' : 'left'
             }}
           >
-            How do I generate a bearer token?
+            {t('tokenInput.helpTooltip')}
           </FormHelperText>
-
         </Grid>
 
         <Grid size={{ xs: 12, md: 2 }}>
@@ -51,8 +61,9 @@ const TokenInput: React.FC<TokenInputProps> = memo(({
             onClick={onContinue}
             disabled={loading || !token}
             fullWidth
+            aria-label={t('common.continue')}
           >
-            Continue
+            {t('common.continue')}
           </Button>
         </Grid>
       </Grid>

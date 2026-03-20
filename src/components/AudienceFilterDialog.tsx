@@ -1,3 +1,6 @@
+// Audience Filter Dialog Component
+// Follows Single Responsibility Principle - handles audience filtering
+
 import React, { memo } from 'react';
 import {
   Dialog,
@@ -14,6 +17,7 @@ import {
   IconButton
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
+import { useI18n } from '../contexts/I18nContext';
 
 interface AudienceFilterDialogProps {
   open: boolean;
@@ -36,6 +40,8 @@ const AudienceFilterDialog: React.FC<AudienceFilterDialogProps> = memo(({
   onClose,
   onApply
 }) => {
+  const { t } = useI18n();
+  
   const filteredNames = allAudienceNames.filter(name =>
     name.toLowerCase().includes(filterText.toLowerCase())
   );
@@ -79,11 +85,11 @@ const AudienceFilterDialog: React.FC<AudienceFilterDialogProps> = memo(({
       }}
     >
       <DialogTitle>
-        Filter Audiences
+        {t('audienceFilter.dialogTitle')}
         <IconButton
-          aria-label="close"
+          aria-label={t('common.close')}
           onClick={onClose}
-          sx={{ position: "absolute", right: 8, top: 8 }}
+          sx={{ position: "absolute", insetInlineEnd: 8, top: 8 }}
           size="large"
         >
           <CloseIcon />
@@ -102,16 +108,17 @@ const AudienceFilterDialog: React.FC<AudienceFilterDialogProps> = memo(({
                     onChange={(_, checked) => handleSelectAll(checked)}
                   />
                 }
-                label="Select All"
+                label={t('audienceFilter.selectAll')}
               />
             </Grid>
             <Grid size={6}>
               <TextField
                 size="small"
-                placeholder="Filter audiences"
+                placeholder={t('audienceFilter.searchPlaceholder')}
                 value={filterText}
                 onChange={(e) => onFilterChange(e.target.value)}
                 fullWidth
+                aria-label={t('audienceFilter.searchPlaceholder')}
               />
             </Grid>
           </Grid>
@@ -120,7 +127,7 @@ const AudienceFilterDialog: React.FC<AudienceFilterDialogProps> = memo(({
           
           <Box display="flex" flexDirection="column" maxHeight="90%" overflow="auto" gap={0}>
             {filteredNames.length === 0 ? (
-              <Typography variant="body2">No audiences found.</Typography>
+              <Typography variant="body2">{t('audienceFilter.selectedCount', { count: '0' })}</Typography>
             ) : (
               <Grid container spacing={2}>
                 {filteredNames.map(name => (
@@ -155,15 +162,16 @@ const AudienceFilterDialog: React.FC<AudienceFilterDialogProps> = memo(({
       </DialogContent>
       
       <Box display="flex" justifyContent="flex-end" gap={2} p={2}>
-        <Button onClick={onClose} variant="text">
-          Cancel
+        <Button onClick={onClose} variant="text" aria-label={t('common.cancel')}>
+          {t('common.cancel')}
         </Button>
         <Button
           onClick={onApply}
           variant="contained"
           disabled={selectedNames.length === 0}
+          aria-label={t('common.apply')}
         >
-          Apply
+          {t('common.apply')}
         </Button>
       </Box>
     </Dialog>

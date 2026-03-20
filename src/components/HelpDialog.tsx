@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import { Dialog, DialogTitle, DialogContent, Box, Button } from '@mui/material';
+import { useI18n } from '../contexts/I18nContext';
 
 interface HelpDialogProps {
   open: boolean;
@@ -7,38 +8,28 @@ interface HelpDialogProps {
 }
 
 const HelpDialog: React.FC<HelpDialogProps> = memo(({ open, onClose }) => {
+  const { t } = useI18n();
+  
   return (
     <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
-      <DialogTitle>How to Generate Optimizely API Token</DialogTitle>
+      <DialogTitle>{t('helpDialog.title')}</DialogTitle>
       <DialogContent>
         <Box sx={{ mb: 2 }}>
-          <ol style={{ paddingLeft: 20, lineHeight: 2 }}>
+          <ol style={{ paddingInlineStart: 20, lineHeight: 2 }}>
             <li>
-              Log in to your Optimizely account at{' '}
+              {t('helpDialog.step1')} {' '}
               <a href="https://app.optimizely.com" target="_blank" rel="noopener noreferrer">
                 app.optimizely.com
               </a>.
             </li>
-            <li>
-              Click on <strong>Profile</strong> in the bottom left-hand corner of the navigation sidebar.
-            </li>
-            <li>
-              Select the <strong>API Access</strong> tab.
-            </li>
-            <li>
-              Click <strong>Generate New Token</strong>.
-            </li>
-            <li>
-              Enter a name for your token and click <strong>Create</strong>.
-            </li>
-            <li>
-              Copy the token immediately. For security, it will not be displayed again once you leave the page.
-            </li>
+            <li>{t('helpDialog.step2')}</li>
+            <li>{t('helpDialog.step3')}</li>
+            <li>{t('helpDialog.step4')}</li>
           </ol>
         </Box>
         <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-          <Button onClick={onClose} variant="contained">
-            Close
+          <Button onClick={onClose} variant="contained" aria-label={t('common.close')}>
+            {t('common.close')}
           </Button>
         </Box>
       </DialogContent>

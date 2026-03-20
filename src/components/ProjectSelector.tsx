@@ -13,6 +13,7 @@ import {
   Button
 } from '@mui/material';
 import { Project } from '../types';
+import { useI18n } from '../contexts/I18nContext';
 
 interface ProjectSelectorProps {
   open: boolean;
@@ -31,6 +32,8 @@ const ProjectSelector: React.FC<ProjectSelectorProps> = memo(({
   onConfirm,
   onClose
 }) => {
+  const { t } = useI18n();
+  
   return (
     <Dialog
       open={open}
@@ -42,22 +45,22 @@ const ProjectSelector: React.FC<ProjectSelectorProps> = memo(({
       maxWidth="sm"
       fullWidth
     >
-      <DialogTitle>Select a Project</DialogTitle>
+      <DialogTitle>{t('projectSelector.dialogTitle')}</DialogTitle>
       <DialogContent>
         <RadioGroup
           value={selectedProjectId ?? ''}
           onChange={(e) => onProjectSelect(Number(e.target.value))}
         >
-          {projects.map((proj) => (
+          {projects.map((proj,index) => (
             <FormControlLabel
               key={proj.id}
               value={proj.id}
               control={<Radio />}
               label={
                 <Box>
-                  <Typography fontWeight="bold">{proj.name}</Typography>
+                  <Typography fontWeight="bold">{t('projectSelector.projectLabel', { index: String(index + 1) })}</Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {proj.description}
+                    {t('projectSelector.projectDescription')}
                   </Typography>
                 </Box>
               }
@@ -71,8 +74,9 @@ const ProjectSelector: React.FC<ProjectSelectorProps> = memo(({
             variant="contained"
             onClick={onConfirm}
             disabled={selectedProjectId === null}
+            aria-label={t('common.confirm')}
           >
-            Confirm
+            {t('common.confirm')}
           </Button>
         </Box>
       </DialogContent>

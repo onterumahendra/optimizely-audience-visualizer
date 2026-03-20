@@ -2,8 +2,11 @@ import { useState, useEffect, useMemo, memo, lazy, Suspense } from "react";
 import { Treemap, Tooltip, ResponsiveContainer } from "recharts";
 import TuneIcon from '@mui/icons-material/Tune';
 import BrowserUpdatedRoundedIcon from '@mui/icons-material/BrowserUpdatedRounded';
+import { useTheme as useMuiTheme } from '@mui/material/styles';
+import { Box } from '@mui/material';
 import { colorBins, getBinColor } from '../constants/treemapColors';
 import { AudienceModel, TreemapCellData } from '../types';
+import { useI18n } from '../contexts/I18nContext';
 
 // Lazy load heavy components
 const AudienceExperimentsDialog = lazy(() => import('./AudienceExperimentsDialog'));
@@ -43,6 +46,8 @@ async function downloadTreemapAsPNG() {
 }
 
 const AudienceTreemap: React.FC<AudienceTreemapProps> = memo(({ audiences }) => {
+    const { t } = useI18n();
+    const theme = useMuiTheme();
     const [tileTooltip, setTileTooltip] = useState<{ x: number; y: number; content: string } | null>(null);
     const [filterModalOpen, setFilterModalOpen] = useState(false);
     const [audienceFilter, setAudienceFilter] = useState('');
@@ -70,8 +75,8 @@ const AudienceTreemap: React.FC<AudienceTreemapProps> = memo(({ audiences }) => 
         const max = Math.max(...values, 1);
 
         return {
-            data: displayedAudiences.map(aud => ({
-                name: aud.name,
+            data: displayedAudiences.map((aud, index) => ({
+                name: `Audience ${index + 1}`,
                 value: aud.experiments.length,
                 audId: aud.audId,
                 experiments: aud.experiments,
@@ -91,33 +96,33 @@ const AudienceTreemap: React.FC<AudienceTreemapProps> = memo(({ audiences }) => 
 
     return (
         <>
-            <div style={{ display: 'flex', paddingBottom: '16px', width: '100%', justifyContent: 'center', alignItems: 'center' }}>
-                <Suspense fallback={<div style={{ flex: 1 }} />}>
+            <Box sx={{ display: 'flex', pb: 2, width: '100%', justifyContent: 'center', alignItems: 'center' }}>
+                <Suspense fallback={<Box sx={{ flex: 1 }} />}>
                     <ColorLegend colorBins={colorBins} min={treemapData.min} max={treemapData.max} />
                 </Suspense>
-                <div style={{ width: 80, minWidth: 80, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <Box sx={{ width: 80, minWidth: 80, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <TuneIcon 
-                        aria-label="filter" 
+                        aria-label={t('audienceTreemap.filterLabel')} 
                         color="primary" 
                         sx={{ cursor: 'pointer' }} 
                         onClick={() => setFilterModalOpen(true)} 
                     />
                     <BrowserUpdatedRoundedIcon 
-                        aria-label="download" 
+                        aria-label={t('audienceTreemap.downloadLabel')} 
                         color="primary" 
                         sx={{ cursor: 'pointer' }} 
                         onClick={downloadTreemapAsPNG} 
                     />
-                </div>
-            </div>
+                </Box>
+            </Box>
             
             <ResponsiveContainer width="100%" height={500} id="treeMapContainer">
                 <Treemap
                     data={treemapData.data}
                     dataKey="value"
                     nameKey="name"
-                    stroke="#fff"
-                    fill="#8884d8"
+                    stroke={theme.palette.divider}
+                    fill={theme.palette.primary.main}
                     content={({ x, y, width, height, name, value, fill }) => {
                         // Find the full data for this cell
                         const cellData = treemapData.data.find(d => d.name === name);
@@ -143,8 +148,8 @@ const AudienceTreemap: React.FC<AudienceTreemapProps> = memo(({ audiences }) => 
                                     y={y}
                                     width={width}
                                     height={height}
-                                    fill={typeof fill === "string" ? fill : "#8884d8"}
-                                    stroke="#000"
+                                    fill={typeof fill === "string" ? fill : theme.palette.primary.main}
+                                    stroke={theme.palette.divider}
                                     style={{ cursor: "pointer" }}
                                     onClick={() => cellData && setSelectedCell(cellData)}
                                     onMouseOver={handleMouseOver}
@@ -184,15 +189,17 @@ const AudienceTreemap: React.FC<AudienceTreemapProps> = memo(({ audiences }) => 
                 />
                 <Tooltip formatter={(value: any, name: any) => [`Experiments: ${value}`, name]} />
                 {tileTooltip && (
-                    <div
-                        style={{
+                    <Box
+                        sx={{
                             position: 'fixed',
                             left: tileTooltip.x + 12,
                             top: tileTooltip.y + 12,
-                            background: 'rgba(30,30,30,0.95)',
-                            color: '#fff',
+                            background: theme.palette.mode === 'dark' ? 'rgba(30,30,30,0.95)' : 'rgba(255,255,255,0.95)',
+                            color: 'text.primary',
+                            border: 1,
+                            borderColor: 'divider',
                             padding: '6px 12px',
-                            borderRadius: 6,
+                            borderRadius: 1.5,
                             fontSize: 14,
                             pointerEvents: 'none',
                             zIndex: 2000,
@@ -200,7 +207,7 @@ const AudienceTreemap: React.FC<AudienceTreemapProps> = memo(({ audiences }) => 
                         }}
                     >
                         {tileTooltip.content}
-                    </div>
+                    </Box>
                 )}
             </ResponsiveContainer>
 
