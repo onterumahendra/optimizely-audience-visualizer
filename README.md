@@ -5,9 +5,13 @@ An interactive treemap visualization tool for Optimizely audiences and experimen
 
 Demo: https://onterumahendra.github.io/optimizely-audience-visualizer/
 
-![1773418733893](https://github.com/user-attachments/assets/6195339e-a62b-4f1f-806a-9447d19bec0d)
-![1773418734945](https://github.com/user-attachments/assets/f52ff9c1-4cbf-4127-9a63-f4b82a7846f2)
-![1773418735993](https://github.com/user-attachments/assets/19c42152-0e8d-4c65-9446-b63c11a7903a)
+
+![1773418733893](https://github.com/user-attachments/assets/14e6d402-5f63-4406-a276-0fa01a4c28da)
+<img width="722" height="331" alt="Screenshot_2026-03-19_at_3 07 27_PM" src="https://github.com/user-attachments/assets/3cd94cf6-440c-4e91-83b2-84da7308daf3" />
+<img width="721" height="333" alt="Screenshot_2026-03-19_at_3 07 06_PM" src="https://github.com/user-attachments/assets/2a54986a-2b76-4baa-a0ba-1fee2eef7ad4" />
+<img width="722" height="333" alt="Screenshot_2026-03-19_at_3 06 40_PM" src="https://github.com/user-attachments/assets/67c416c7-a5e2-4abb-bb99-95057ef3d633" />
+![1773418735993](https://github.com/user-attachments/assets/42be606e-92f5-4681-af42-ddac3d568f45)
+![1773418734945](https://github.com/user-attachments/assets/ea83fb6a-e11a-44f0-856e-25ee52be30e5)
 
 
 ## 🎯 Features
