@@ -154,6 +154,4 @@ Updating, improving and correcting the documentation
 ## Join The Project Team
 <!-- TODO -->
 
-<!-- omit in toc -->
-## Attribution
-This guide is based on the [contributing.md](https://contributing.md/generator)!
+
